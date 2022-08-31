@@ -1,0 +1,16 @@
+<div class="contenedor">
+  <img src="../../../../../assets/title.png" alt="" min="0" width="200">
+  <form id="frmJugadores" [formGroup]="frmJugadores" (ngSubmit)="frmJugadores.valid ? submit() : false">
+    <select name="jugadores" multiple class="jugadores" formControlName="jugadores">
+      <option *ngFor="let jugador of jugadores" [value]="jugador.id">
+        {{ jugador.name }} 
+      </option>
+    </select>
+    <br>
+    
+    <div class="error" *ngIf="frmJugadores.get('jugadores')?.hasError('required')">Para jugar debes seleccionar minimo 2 jugadores</div>
+    <br>
+    <hr>
+    <button type="submit" [disabled]="frmJugadores.invalid" class="custom-btn btn-12"><span>Jugar!</span><span>Crear Juego</span></button>
+  </form>
+</div>
