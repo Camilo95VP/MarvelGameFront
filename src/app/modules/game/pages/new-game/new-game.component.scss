@@ -1,8 +1,20 @@
-.body{
-  background-color: rgb(34, 34, 34);
+.cont-logout{
+  display: flex;
+  justify-content: flex-end;
+  width: 99%;
 }
 .jugadores {
-  width: 200px;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+ background-color: rgba(255, 255, 255, 0.502);
+ color: rgb(0, 0, 0);
+}
+.select{
+  background-image: url(../../../../../assets/heroes.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-size:20px;
 }
 .error {
   color: rgb(207, 0, 0);
@@ -10,10 +22,15 @@
   top: 12px;
 }
 .contenedor {
-  width: 50%;
+  width: 35%;
   text-align: center;
   margin: 0 auto;
-  margin-top: 150px;
+  margin-top: 30px;
+  background-color: rgba(240, 248, 255, 0.043);
+}
+.cont-button {
+  background-color: rgba(90, 90, 90, 0.635);
+  border-radius: 0px, 0px, 20px, 20px;
 }
 .frame {
   width: 90%;
@@ -41,65 +58,92 @@ button {
    4px 4px 5px 0px rgba(0,0,0,.1);
   outline: none;
 }
-.btn-5 {
+.btn-3 {
+  background: rgb(0,172,238);
+background: linear-gradient(0deg, rgba(0,172,238,1) 0%, rgba(2,126,251,1) 100%);
   width: 130px;
   height: 40px;
   line-height: 42px;
   padding: 0;
   border: none;
-  background: rgb(255,27,0);
-background: linear-gradient(0deg, rgba(255,27,0,1) 0%, rgba(251,75,2,1) 100%);
+  color: white;
 }
-.btn-5:hover {
-  color: #f0094a;
-  background: transparent;
-   box-shadow:none;
+.btn-3 span {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
 }
-.btn-5:before,
-.btn-5:after{
-  content:'';
-  position:absolute;
-  top:0;
-  right:0;
-  height:2px;
-  width:0;
-  background: #f0094a;
-  box-shadow:
-   -1px -1px 5px 0px #fff,
-   7px 7px 20px 0px #0003,
-   4px 4px 5px 0px #0002;
-  transition:400ms ease all;
+.btn-3:before,
+.btn-3:after {
+  position: absolute;
+  content: "";
+  right: 0;
+  top: 0;
+   background: rgba(2,126,251,1);
+  transition: all 0.3s ease;
 }
-.btn-5:after{
-  right:inherit;
-  top:inherit;
-  left:0;
-  bottom:0;
+.btn-3:before {
+  height: 0%;
+  width: 2px;
 }
-.btn-5:hover:before,
-.btn-5:hover:after{
-  width:100%;
-  transition:800ms ease all;
+.btn-3:after {
+  width: 0%;
+  height: 2px;
+}
+.btn-3:hover{
+   background: transparent;
+  box-shadow: none;
+}
+.btn-3:hover:before {
+  height: 100%;
+}
+.btn-3:hover:after {
+  width: 100%;
+}
+.btn-3 span:hover{
+   color: rgb(255, 255, 255);
+}
+.btn-3 span:before,
+.btn-3 span:after {
+  position: absolute;
+  content: "";
+  left: 0;
+  bottom: 0;
+   background: rgba(2,126,251,1);
+  transition: all 0.3s ease;
+}
+.btn-3 span:before {
+  width: 2px;
+  height: 0%;
+}
+.btn-3 span:after {
+  width: 0%;
+  height: 2px;
+}
+.btn-3 span:hover:before {
+  height: 100%;
+}
+.btn-3 span:hover:after {
+  width: 100%;
 }
 .btn-12{
   position: relative;
-  right: 20px;
   bottom: 20px;
   border:none;
   box-shadow: none;
-  width: 130px;
-  height: 40px;
+  width: 100px;
+
   line-height: 42px;
   -webkit-perspective: 230px;
   perspective: 230px;
 }
 .btn-12 span {
-  background: rgb(0,172,238);
-background: linear-gradient(0deg, rgba(0,172,238,1) 0%, rgba(2,126,251,1) 100%);
+background: linear-gradient(0deg, rgba(238, 0, 0, 0.514) 0%, rgba(238, 52, 0, 0.998) 100%);
   display: block;
   position: absolute;
-  width: 130px;
-  height: 40px;
+  width: 100px;
+
   box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
    7px 7px 20px 0px rgba(0,0,0,.1),
    4px 4px 5px 0px rgba(0,0,0,.1);
@@ -150,3 +194,4 @@ background: linear-gradient(0deg, rgba(0,172,238,1) 0%, rgba(2,126,251,1) 100%);
   -moz-transform: rotateX(-90deg);
   transform: rotateX(-90deg);
 }
+

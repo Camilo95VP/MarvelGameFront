@@ -5,7 +5,7 @@ import { JugadoresModel } from '../models/jugadores.model';
   providedIn: 'root'
 })
 export class JugadoresService {
-  constructor() { }
+  constructor() { } 
 
   getJugadores(): Array<JugadoresModel> {
     const jugadores = new Array<JugadoresModel>();

@@ -1,16 +1,24 @@
+<body>
+<div class="cont-logout">
+  <button (click)="botonLogout()" type="button" class="custom-btn btn-12"><span>Salir</span><span>Cerrar sesion</span></button>
+</div>
 <div class="contenedor">
   <img src="../../../../../assets/title.png" alt="" min="0" width="200">
   <form id="frmJugadores" [formGroup]="frmJugadores" (ngSubmit)="frmJugadores.valid ? submit() : false">
+    <div class="select">
     <select name="jugadores" multiple class="jugadores" formControlName="jugadores">
       <option *ngFor="let jugador of jugadores" [value]="jugador.id">
-        {{ jugador.name }} 
+        {{ jugador.name }}
       </option>
     </select>
+  </div>
+
+    <div class="error" *ngIf="frmJugadores.get('jugadores')?.hasError('required')">Para jugar debes seleccionar minimo 2
+      jugadores</div>
     <br>
-    
-    <div class="error" *ngIf="frmJugadores.get('jugadores')?.hasError('required')">Para jugar debes seleccionar minimo 2 jugadores</div>
-    <br>
-    <hr>
-    <button type="submit" [disabled]="frmJugadores.invalid" class="custom-btn btn-12"><span>Jugar!</span><span>Crear Juego</span></button>
+    <div class="cont-button">
+      <button type="submit" [disabled]="frmJugadores.invalid" class="custom-btn btn-3"><span>Crear Juego</span></button>
+    </div>
   </form>
 </div>
+</body>

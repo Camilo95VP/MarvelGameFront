@@ -2,6 +2,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule} from '@angular/fire/compat/auth'
 
 // Routers
 import { AppRoutingModule } from './app-routing.module';
@@ -11,6 +13,9 @@ import { AppComponent } from './templates/cards/app.component';
 import { NewGameComponent } from './modules/game/pages/new-game/new-game.component';
 import { LoginComponent } from './modules/game/pages/login/login.component';
 import { HomeComponent } from './modules/game/pages/home/home.component';
+
+//enviroments
+import { environment } from 'src/environments/environment';
 
 
 @NgModule({
@@ -24,7 +29,9 @@ import { HomeComponent } from './modules/game/pages/home/home.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
