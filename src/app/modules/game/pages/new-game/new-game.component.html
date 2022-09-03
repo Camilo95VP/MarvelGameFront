@@ -1,9 +1,6 @@
-<body>
-<div class="cont-logout">
-  <button (click)="botonLogout()" type="button" class="custom-btn btn-12"><span>Salir</span><span>Cerrar sesion</span></button>
-</div>
+<app-nav></app-nav>
 <div class="contenedor">
-  <img src="../../../../../assets/title.png" alt="" min="0" width="200">
+  <h2>Jugadores</h2>
   <form id="frmJugadores" [formGroup]="frmJugadores" (ngSubmit)="frmJugadores.valid ? submit() : false">
     <div class="select">
     <select name="jugadores" multiple class="jugadores" formControlName="jugadores">
@@ -17,8 +14,7 @@
       jugadores</div>
     <br>
     <div class="cont-button">
-      <button type="submit" [disabled]="frmJugadores.invalid" class="custom-btn btn-3"><span>Crear Juego</span></button>
+      <button type="submit" [disabled]="frmJugadores.invalid" class="custom-btn btn-3"><span>Jugar !</span></button>
     </div>
   </form>
 </div>
-</body>

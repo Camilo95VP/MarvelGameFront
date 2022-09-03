@@ -8,7 +8,7 @@ import { UserGoogle } from '../models/user.google.model';
   providedIn: 'root'
 })
 export class AuthService {
-  user: any;
+  user:any;
   constructor(
     private router: Router,
     private afAuth: AngularFireAuth,
@@ -30,15 +30,18 @@ export class AuthService {
   OAuthProvider(provider: any){
     return this.afAuth.signInWithPopup(provider)
     .then((_res) => {
+      _res.user?.getIdToken().then((token) => {
+        console.log(token)
+      })
       this.ngZone.run(() => {
-        this.router.navigate(['home']);
+        this.router.navigate(['home']); 
       })
     }).catch((err) => {
       window.alert(err)
     })
   }
 
-  SinginWhitGoogle() {
+  SinginWhitGoogle(): Promise<void> {
     return this.OAuthProvider(new GoogleAuthProvider())
     .then(res => {
       console.log("logueo exitoso!")

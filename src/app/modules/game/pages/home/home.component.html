@@ -1,4 +1,4 @@
-
+<app-nav></app-nav>
 <div class="contenedor">
   <div class="contenedor-delimited">
     <div class="contenedor-up">
@@ -8,10 +8,10 @@
       <h3>Indicaciones del juego</h3>
       <p>Para iniciar el juego debes estar registrado<br>Incluso los jugadores</p>
     </div>
-    <button class="custom-btn btn-3"> <span>Crear juego</span> </button>
+    <button (click)="botonClickGame()" type="button" class="custom-btn btn-3"><span>Crear juego</span></button>
     <div class="contenedor-down">
-      <div class="text"><p>Invita tus amigos</p></div>
+      <div class="text"><p>Invita a tus amigos</p></div>
     </div>
   </div>
-  <button class="custom-btn btn-1">Consultar juegos creados</button>
+  <button (click)="botonClickGameList()" type="button" class="custom-btn btn-1">Consultar juegos creados</button>
 </div>

@@ -14,7 +14,7 @@ export class NewGameComponent implements OnInit {
   frmJugadores: FormGroup;
   jugadores!: Array<JugadoresModel>;
 
-  constructor(private jugadores$: JugadoresService, private auth$: AuthService) {
+  constructor(private jugadores$: JugadoresService) {
     this.frmJugadores = this.createFormJugadores();
   }
 
@@ -33,8 +33,5 @@ export class NewGameComponent implements OnInit {
     });
   }
 
-  botonLogout(): void {
-    this.auth$.logout();
-  }
 
 }

@@ -16,6 +16,8 @@ import { HomeComponent } from './modules/game/pages/home/home.component';
 
 //enviroments
 import { environment } from 'src/environments/environment';
+import { SharedModule } from './modules/shared/shared.module';
+import { GameListComponent } from './modules/game/pages/game-list/game-list.component';
 
 
 @NgModule({
@@ -23,7 +25,8 @@ import { environment } from 'src/environments/environment';
     AppComponent,
     LoginComponent,
     NewGameComponent,
-    HomeComponent
+    HomeComponent,
+    GameListComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +35,7 @@ import { environment } from 'src/environments/environment';
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
