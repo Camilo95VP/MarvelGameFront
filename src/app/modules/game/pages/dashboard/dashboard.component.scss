@@ -1,0 +1,78 @@
+.container {
+    display: flex;
+    width: 95%;
+    margin: 0 auto;
+}
+
+.cont-info {
+    width: 150px
+}
+
+.cont-estado {
+    display: flex;
+    gap: 1em;
+}
+
+.btn {
+    height: 30px;
+    width: 80px;
+    position: relative;
+    top: 27px;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background: linear-gradient(0deg, rgba(0, 172, 238, 1) 0%, rgba(2, 126, 251, 1) 100%);
+}
+.btn:hover{
+    background: linear-gradient(0deg, rgb(0, 118, 164) 0%, rgba(2, 126, 251, 1) 100%);
+}
+.cont-estado p {
+    position: relative;
+    top: 17px;
+}
+
+.dashboard {
+    height: 350px;
+    margin: 0 auto;
+    width: 95%;
+    display: flex;
+    gap: 1em;
+}
+
+.dashboard-card {
+    height: 350px;
+    width: 65%;
+    padding: 10px;
+    margin: 0;
+    border: 1px solid;
+    border-radius: 10px;
+}
+.dashboard-mazo{
+    height: 350px;
+    width: 35%;
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 10px;
+}
+.dashboard-card p{
+    color: greenyellow;
+    position: relative;
+    bottom: 20px
+}
+.dashboard-mazo p{
+    color: greenyellow;
+    position: relative;
+    bottom: 20px
+}
+@media only screen and (max-width: 600px)  {
+    .dashboard{
+        display:grid;
+    }
+    .dashboard-card{
+        width: 80%
+    }
+    .dashboard-mazo{
+        width: 80%
+    }
+}

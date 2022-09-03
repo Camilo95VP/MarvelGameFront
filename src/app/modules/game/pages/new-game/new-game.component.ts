@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/modules/shared/services/auth.service';
 import { JugadoresModel } from '../../models/jugadores.model';
 import { JugadoresService } from '../../services/jugadores.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-new-game',
@@ -14,13 +16,17 @@ export class NewGameComponent implements OnInit {
   frmJugadores: FormGroup;
   jugadores!: Array<JugadoresModel>;
 
-  constructor(private jugadores$: JugadoresService) {
+  constructor(private jugadores$: JugadoresService, private router: Router) {
     this.frmJugadores = this.createFormJugadores();
   }
 
   ngOnInit(): void {
     this.jugadores = this.jugadores$.getJugadores();
     console.log(this.jugadores);
+  }
+
+  botonClickGameList() {
+    this.router.navigate(['game/list']);
   }
 
   public submit(): void {

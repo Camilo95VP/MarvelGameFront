@@ -18,6 +18,7 @@ import { HomeComponent } from './modules/game/pages/home/home.component';
 import { environment } from 'src/environments/environment';
 import { SharedModule } from './modules/shared/shared.module';
 import { GameListComponent } from './modules/game/pages/game-list/game-list.component';
+import { DashboardComponent } from './modules/game/pages/dashboard/dashboard.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { GameListComponent } from './modules/game/pages/game-list/game-list.comp
     LoginComponent,
     NewGameComponent,
     HomeComponent,
-    GameListComponent
+    GameListComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
