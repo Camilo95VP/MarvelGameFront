@@ -1,23 +1,23 @@
 import { Injectable, NgZone } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+
 import { Router } from '@angular/router';
-import { GoogleAuthProvider } from 'firebase/auth';
+import { AuthProvider, GoogleAuthProvider } from 'firebase/auth';
+import { Observable } from 'rxjs';
+import { JugadoresService } from '../../game/services/jugadores.service';
+
 import { UserGoogle } from '../models/user.google.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  user:any;
   constructor(
     private router: Router,
     private afAuth: AngularFireAuth,
-    private ngZone: NgZone
-  ) { 
-    this.afAuth.authState.subscribe(usuario => {
-      this.user = usuario;
-    })
-  }
+    private ngZone: NgZone,
+    private gamers$: JugadoresService
+  ) {  }
 
   logout(): void{
     this.afAuth.signOut().then((_res) => {
@@ -27,18 +27,9 @@ export class AuthService {
     });
   }
 
-  OAuthProvider(provider: any){
-    return this.afAuth.signInWithPopup(provider)
-    .then((_res) => {
-      _res.user?.getIdToken().then((token) => {
-        console.log(token)
-      })
-      this.ngZone.run(() => {
-        this.router.navigate(['home']); 
-      })
-    }).catch((err) => {
-      window.alert(err)
-    })
+  async getUserAuth() {
+    const userData = await this.afAuth.currentUser;
+    return userData;
   }
 
   SinginWhitGoogle(): Promise<void> {
@@ -50,6 +41,16 @@ export class AuthService {
     })
   }
 
-
+  OAuthProvider(provider: AuthProvider){
+    return this.afAuth.signInWithPopup(provider)
+    .then((_res) => {
+      this.gamers$.addGamer(_res.user);
+      this.ngZone.run(() => {
+        this.router.navigate(['home']); 
+      })
+    }).catch((err) => {
+      window.alert(err)
+    })
+  }
 
 }

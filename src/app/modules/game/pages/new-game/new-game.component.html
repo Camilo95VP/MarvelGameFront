@@ -14,7 +14,7 @@
       jugadores</div>
     <br>
     <div class="cont-button">
-      <button (click)="botonClickGameList()" type="button" class="custom-btn btn-3"><span>Jugar !</span></button>
+      <button form="frmJugadores" type="submit" class="custom-btn btn-3" [disabled]="frmJugadores.invalid"><span>Jugar !</span></button>
     </div>
   </form>
 </div>

@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule} from '@angular/fire/compat/auth'
+import { HttpClientModule } from '@angular/common/http';
 
 // Routers
 import { AppRoutingModule } from './app-routing.module';
@@ -38,6 +39,7 @@ import { DashboardComponent } from './modules/game/pages/dashboard/dashboard.com
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     SharedModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
