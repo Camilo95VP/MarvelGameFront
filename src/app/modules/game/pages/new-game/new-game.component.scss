@@ -19,14 +19,15 @@
 .error {
   color: rgb(207, 0, 0);
   position: relative;
-  top: 12px;
+  bottom: 5px;
 }
 .contenedor {
   width: 35%;
   text-align: center;
   margin: 0 auto;
   margin-top: 80px;
-  background-color: rgba(240, 248, 255, 0.043);
+  -webkit-box-shadow: 0px 1px 4px 2px #868686; 
+box-shadow: 0px 1px 4px 2px #353535;
   border-radius:15px
 }
 .contenedor h2{

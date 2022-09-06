@@ -8,11 +8,20 @@
     background: rgb(0, 172, 238);
   background: linear-gradient(0deg, rgba(0, 171, 238, 0) 0%, rgb(2, 126, 251) 100%);
 }
-.cont-nav h2{
-  color:rgb(0, 206, 14);
-  position:relative;
+.name{
+  display:flex;
+  gap: 1em;
+  position: relative;
+  top: 6px;
   left:15px;
-  top: 2px;
+}
+.name h3{
+  color:rgb(0, 206, 14);
+}
+.name p{
+  position: relative;
+  top: 6px;
+  font-weight: bold;
 }
 button {
   border: none;
@@ -77,4 +86,16 @@ button {
  
  button:hover:before {
   width: 100%;
+ }
+ .sec2{
+  position: relative;
+  right: 35px;
+  bottom: 4px
+ }
+ @media only screen and (max-width: 750px) {
+  .name{
+    display:flex;
+    flex-direction: column;
+  }
+
  }

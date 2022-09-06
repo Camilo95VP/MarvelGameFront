@@ -13,8 +13,8 @@
     max-Width: 90%;
     margin: 0 auto;
     height: 60px;
-    border: 1px solid;
-    border-color: gray;
+    -webkit-box-shadow: 0px 1px 4px 2px #868686; 
+box-shadow: 0px 1px 4px 2px #353535;
     padding: 7px;
     border-radius: 5px;
 }

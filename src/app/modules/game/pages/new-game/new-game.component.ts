@@ -17,8 +17,8 @@ export class NewGameComponent implements OnInit {
 
   frmJugadores: FormGroup;
   jugadores!: Array<Usuario>;
-  currentUser!: firebase.User | null
-
+  currentUser!: firebase.User | null;
+  
   constructor(private jugadores$: JugadoresService, private auth$: AuthService, private router: Router) {
     this.frmJugadores = this.createFormJugadores();
   }
@@ -27,6 +27,7 @@ export class NewGameComponent implements OnInit {
     this.jugadores = await this.jugadores$.getJugadores();
     console.log(this.jugadores);
     this.currentUser = await this.auth$.getUserAuth();
+    console.log("current",this.currentUser?.displayName)
     this.jugadores = this.jugadores.filter(item => item.id !== this.currentUser?.uid);
   }
 

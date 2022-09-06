@@ -24,16 +24,17 @@
     cursor: pointer;
     background: linear-gradient(0deg, rgba(0, 172, 238, 1) 0%, rgba(2, 126, 251, 1) 100%);
 }
-.btn:hover{
+
+.btn:hover {
     background: linear-gradient(0deg, rgb(0, 118, 164) 0%, rgba(2, 126, 251, 1) 100%);
 }
+
 .cont-estado p {
     position: relative;
     top: 17px;
 }
 
 .dashboard {
-    
     margin: 0 auto;
     width: 95%;
     display: flex;
@@ -41,77 +42,87 @@
 }
 
 .dashboard-card {
-    
     width: 65%;
     padding: 10px;
     margin: 0;
-    border: 1px solid;
+    -webkit-box-shadow: 0px 1px 4px 2px #ffffffef;
+    box-shadow: 0px 1px 4px 2px #2583ffe6;
     border-radius: 10px;
 }
-.dashboard-mazo{
-    
+
+.dashboard-mazo {
     width: 35%;
     padding: 10px;
-    border: 1px solid;
+    -webkit-box-shadow: 0px 1px 4px 2px #ffffffef;
+    box-shadow: 0px 1px 4px 2px #2583ffe6;
     border-radius: 10px;
 }
-.dashboard-card p{
+
+.dashboard-card p {
     color: greenyellow;
     position: relative;
     bottom: 20px
 }
-.dashboard-mazo p{
+
+.dashboard-mazo p {
     color: greenyellow;
     position: relative;
     bottom: 20px
 }
-@media only screen and (max-width: 600px)  {
-    .dashboard{
-        display:grid;
+
+@media only screen and (max-width: 600px) {
+    .dashboard {
+        display: grid;
     }
-    .dashboard-card{
+
+    .dashboard-card {
         width: 80%
     }
-    .dashboard-mazo{
+
+    .dashboard-mazo {
         width: 80%
     }
 }
-.cards{
-    display:grid;
-    grid-template-columns: repeat(3,1fr);
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 1em;
     width: 100%;
     position: relative;
     bottom: 22px;
     margin: 0 auto;
 }
-.card{
-    background-image: url(../../../../../assets/4C1.jpg);
+
+.card {
+    background-image: url(../../../../../assets/4B7.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     height: 180px;
     width: 100%;
     margin: 0 auto;
-    border-radius:10px
+    border-radius: 10px
 }
-.cards-mazo{
+
+.cards-mazo {
     text-align: center;
-    display:grid;
-    grid-template-columns: repeat(3,1fr);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 1em;
     width: 98%;
     margin: 0 auto;
     position: relative;
     bottom: 22px;
 }
-.card-mazo{
+
+.card-mazo {
     background-image: url(../../../../../assets/0E0.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     height: 180px;
     width: 100%;
     margin: 0 auto;
-    border-radius:10px
+    border-radius: 10px
 }
 
 .btn-poner {
@@ -125,14 +136,14 @@
     top: 5px;
     font-weight: 1000;
     font-size: 12px;
-    -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
-    box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+    box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
     transition: all 250ms;
     overflow: hidden;
     cursor: pointer;
-   }
-   
-   .btn-poner::before {
+}
+
+.btn-poner::before {
     content: "";
     position: absolute;
     top: 0;
@@ -140,27 +151,28 @@
     height: 100%;
     width: 0;
     border-radius: 5px;
-    background: rgb(0,172,238);
-    background: linear-gradient(0deg, rgba(0,172,238,1) 0%, rgba(2,126,251,1) 100%);
+    background: rgb(0, 172, 238);
+    background: linear-gradient(0deg, rgba(0, 172, 238, 1) 0%, rgba(2, 126, 251, 1) 100%);
     z-index: -1;
     -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
     box-shadow: 4px 8px 19px -3px rgba(13, 52, 209, 0.759);
     transition: all 250ms
-   }
-   
-   .btn-poner:hover {
-    color: #e8e8e8;
-   }
-   
-   .btn-poner:hover::before {
-    width: 100%;
-   }
-@media only screen and (max-width: 600px)  {
-    .cards{
-        grid-template-columns: repeat(2,1fr);
-    }
-    .cards-mazo{
-        grid-template-columns: repeat(2,1fr);
-    }
 }
 
+.btn-poner:hover {
+    color: #e8e8e8;
+}
+
+.btn-poner:hover::before {
+    width: 100%;
+}
+
+@media only screen and (max-width: 810px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cards-mazo {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
