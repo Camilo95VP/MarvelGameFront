@@ -203,4 +203,13 @@ background: linear-gradient(0deg, rgba(238, 0, 0, 0.514) 0%, rgba(238, 52, 0, 0.
   -moz-transform: rotateX(-90deg);
   transform: rotateX(-90deg);
 }
-
+@media only screen and (max-width: 600px) {
+  .contenedor{
+    width: 90%;
+  }
+  @media only screen and (max-width: 750px) {
+    .jugadores{
+    width: 100%;  
+    }
+  }
+}

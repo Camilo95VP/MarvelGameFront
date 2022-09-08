@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/modules/shared/services/auth.service';
 import { JugadoresService } from '../../services/jugadores.service';
@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { Usuario } from '../../models/usuario.model';
 import firebase from 'firebase/compat';
 import { Game } from '../../models/game.model';
+import { WebsocketService } from "src/app/modules/shared/services/websocket.service";
+import { v4 as uuidv4 } from 'uuid';
 
 
 @Component({
@@ -13,14 +15,20 @@ import { Game } from '../../models/game.model';
   templateUrl: './new-game.component.html',
   styleUrls: ['./new-game.component.scss']
 })
-export class NewGameComponent implements OnInit {
+export class NewGameComponent implements OnInit, OnDestroy {
 
   frmJugadores: FormGroup;
   jugadores!: Array<Usuario>;
   currentUser!: firebase.User | null;
+  uuid: string;
   
-  constructor(private jugadores$: JugadoresService, private auth$: AuthService, private router: Router) {
+  constructor(
+    private jugadores$: JugadoresService, 
+    private auth$: AuthService,
+    private ws$: WebsocketService, 
+    private router: Router) {
     this.frmJugadores = this.createFormJugadores();
+    this.uuid = uuidv4()
   }
 
   async ngOnInit(): Promise<void> {
@@ -29,6 +37,15 @@ export class NewGameComponent implements OnInit {
     this.currentUser = await this.auth$.getUserAuth();
     console.log("current",this.currentUser?.displayName)
     this.jugadores = this.jugadores.filter(item => item.id !== this.currentUser?.uid);
+    this.ws$.conectar(this.uuid).subscribe({
+      next: (message: any)=>console.log(message),
+      error:(error:any)=>console.log(error),
+      complete:()=> console.log("completado")
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.ws$.close();
   }
 
   public submit(): void {
@@ -54,5 +71,16 @@ export class NewGameComponent implements OnInit {
     });
   }
 
-
+  public enviar(){
+    this.ws$.crearJuego({
+      "juegoId": this.uuid,
+      "jugadores": {
+          "uid:1": "pedro",
+          "uid:2": "garcia"
+     },
+     "jugadorPrincipalId": "uid:1" 
+    }).subscribe(ws => {
+      console.log("objeto", ws)
+    })
+  }
 }

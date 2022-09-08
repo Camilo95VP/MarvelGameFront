@@ -17,6 +17,7 @@ import { NewGameComponent } from './modules/game/pages/new-game/new-game.compone
 import { NavComponent } from './modules/shared/components/nav/nav.component';
 import { GameListComponent } from './modules/game/pages/game-list/game-list.component';
 import { DashboardComponent } from './modules/game/pages/dashboard/dashboard.component';
+import { FooterComponent } from './modules/shared/components/footer/footer.component';
 
 const routes: Routes = [
   {
@@ -52,6 +53,12 @@ const routes: Routes = [
   {
     path: 'nav',
     component: NavComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin }
+  },
+  {
+    path: 'footer',
+    component: FooterComponent,
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin }
   }

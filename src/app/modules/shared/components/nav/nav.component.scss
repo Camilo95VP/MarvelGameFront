@@ -97,5 +97,15 @@ button {
     display:flex;
     flex-direction: column;
   }
+  @media only screen and (max-width: 750px) {
+    .name{
+      display: none;
+      justify-content:space-between;
+    }
+    .sec2{
+      position: relative;
+      left: -10px;
+    }
+  }
 
  }

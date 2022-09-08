@@ -1,27 +1,44 @@
-.contenedor{
+.contenedor {
     text-align: center;
-    max-width: 60%;
+    max-width: 80%;
     margin: 0 auto;
 }
-.cont-titles{
-    display: flex;
-    justify-content:space-between
+
+@media only screen and (max-width: 700px) {
+    .contenedor {
+        max-width: 80%;
+    }
 }
-.cont-juegos{
+
+.cont-titles {
     display: flex;
-    justify-content:space-between;
-    max-Width: 90%;
+    justify-content: space-between
+}
+.contenedor-juegos{
+    display:flex;
+    flex-direction: column;
+    gap: 1em;
+    font-weight: bold;
+}
+
+.cont-juego {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
     margin: 0 auto;
     height: 60px;
-    -webkit-box-shadow: 0px 1px 4px 2px #868686; 
-box-shadow: 0px 1px 4px 2px #353535;
+    -webkit-box-shadow: 0px 1px 4px 2px #868686;
+    box-shadow: 0px 1px 4px 2px #353535;
     padding: 7px;
     border-radius: 5px;
+    font-weight: bold;
 }
-.btn{
+
+.btn {
     height: 25px;
     position: relative;
     top: 18px;
+    left: 42%;
     Width: 80px;
     cursor: pointer;
     background: linear-gradient(0deg, rgba(0, 172, 238, 1) 0%, rgba(2, 126, 251, 1) 100%);
@@ -29,17 +46,32 @@ box-shadow: 0px 1px 4px 2px #353535;
     text-decoration: none;
     border-radius: 5px;
 }
-.btn:hover{
+@media only screen and (max-width: 1150px) {
+    .btn{
+        left: 20%;
+    }
+}
+.btn:hover {
     background: linear-gradient(0deg, rgb(0, 118, 164) 0%, rgba(2, 126, 251, 1) 100%);
 }
-.cont-juegos .btnIn{
+.cont-juego .btnIn {
     background-color: rgb(75, 75, 75) !important;
     height: 25px;
     position: relative;
     top: 18px;
+    left: 42%;
     Width: 80px;
     cursor: pointer;
     color: white;
     text-decoration: none;
     border-radius: 5px;
+}
+@media only screen and (max-width: 1150px) {
+    .cont-juego .btnIn{
+        left: 20%;
+    }
+}
+.cont-juego p{
+    font-weight: bold;
+    margin-top:22px
 }

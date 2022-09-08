@@ -73,6 +73,8 @@
 @media only screen and (max-width: 600px) {
     .dashboard {
         display: grid;
+        left: 20px;
+    position: relative;
     }
 
     .dashboard-card {
