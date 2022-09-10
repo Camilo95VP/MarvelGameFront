@@ -3,15 +3,14 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 import { Router } from '@angular/router';
 import { AuthProvider, GoogleAuthProvider } from 'firebase/auth';
-import { Observable } from 'rxjs';
 import { JugadoresService } from '../../game/services/jugadores.service';
 
-import { UserGoogle } from '../models/user.google.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  userData: any;
   constructor(
     private router: Router,
     private afAuth: AngularFireAuth,

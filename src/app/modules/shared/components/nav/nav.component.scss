@@ -8,12 +8,15 @@
     background: rgb(0, 172, 238);
   background: linear-gradient(0deg, rgba(0, 171, 238, 0) 0%, rgb(2, 126, 251) 100%);
 }
+.name img{
+  position: relative;
+  bottom: 7px;
+}
 .name{
   display:flex;
-  gap: 1em;
   position: relative;
   top: 6px;
-  left:15px;
+  color:rgb(0, 206, 52);
 }
 .name h3{
   color:rgb(0, 206, 14);
@@ -89,8 +92,11 @@ button {
  }
  .sec2{
   position: relative;
-  right: 35px;
+  right: 55px;
   bottom: 4px
+ }
+ .name2{
+  display: none;
  }
  @media only screen and (max-width: 750px) {
   .name{
@@ -100,7 +106,19 @@ button {
   @media only screen and (max-width: 750px) {
     .name{
       display: none;
-      justify-content:space-between;
+    }
+    .name2{
+      display: inline;
+      display: flex;
+      width: 75%;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .name2 p{
+      position: relative;
+      top: 12px;
+      font-weight: bold;
+      color:rgb(0, 169, 68);
     }
     .sec2{
       position: relative;

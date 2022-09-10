@@ -9,16 +9,18 @@
         max-width: 80%;
     }
 }
-
 .cont-titles {
     display: flex;
-    justify-content: space-between
+    justify-content: space-between;
+    width: 94%;
+    margin: 0 auto
 }
 .contenedor-juegos{
     display:flex;
     flex-direction: column;
     gap: 1em;
     font-weight: bold;
+    box-sizing: border-box;
 }
 
 .cont-juego {

@@ -1,5 +1,7 @@
 body{
-    background-color: rgb(8, 8, 8);
+    // background-color: rgb(8, 8, 8);
+    background-image: url(../src/assets/fondonegro.jpg);
+    background-size: cover;
     color: rgb(196, 196, 196);
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
@@ -8,4 +10,7 @@ body{
     -webkit-box-sizing: inherit;
     box-sizing: inherit;
     background-color: gray;
+}
+::-webkit-scrollbar {
+    display: none;
 }

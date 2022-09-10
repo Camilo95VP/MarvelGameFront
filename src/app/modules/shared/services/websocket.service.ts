@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { webSocket } from 'rxjs/webSocket';
+import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class WebsocketService {
-  subject: any;
+  private socket!: WebSocketSubject<unknown>;
 
 constructor(private http: HttpClient) { }
 
@@ -16,12 +17,12 @@ public crearJuego(body: any){
 }
 
 conectar(juegoId:string){
-  this.subject = webSocket('ws://localhost:8081/retrieve/'+juegoId);
-  return this.subject;
+  this.socket = webSocket(`${environment.urlWs}/${juegoId}`);
+  return this.socket;
 }
 
 close(){
-  this.subject.unsubscribe();
+  this.socket.unsubscribe();
 }
 
 }

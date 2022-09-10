@@ -8,7 +8,17 @@ import firebase from 'firebase/compat';
 import { Game } from '../../models/game.model';
 import { WebsocketService } from "src/app/modules/shared/services/websocket.service";
 import { v4 as uuidv4 } from 'uuid';
+import { ApiService } from 'src/app/modules/shared/services/api.service';
 
+
+export class User {
+  constructor(
+    public displayName: string,
+    public email: string,
+    public uid: string,
+    public selected?: boolean
+  ) {}
+}
 
 @Component({
   selector: 'app-new-game',
@@ -25,7 +35,8 @@ export class NewGameComponent implements OnInit, OnDestroy {
   constructor(
     private jugadores$: JugadoresService, 
     private auth$: AuthService,
-    private ws$: WebsocketService, 
+    private ws$: WebsocketService,
+    private api$: ApiService, 
     private router: Router) {
     this.frmJugadores = this.createFormJugadores();
     this.uuid = uuidv4()
@@ -33,10 +44,11 @@ export class NewGameComponent implements OnInit, OnDestroy {
 
   async ngOnInit(): Promise<void> {
     this.jugadores = await this.jugadores$.getJugadores();
-    console.log(this.jugadores);
+    console.log("JUGADORES",this.jugadores);
     this.currentUser = await this.auth$.getUserAuth();
-    console.log("current",this.currentUser?.displayName)
+    console.log("JUGADOR REGISTRADO =",this.currentUser?.displayName)
     this.jugadores = this.jugadores.filter(item => item.id !== this.currentUser?.uid);
+
     this.ws$.conectar(this.uuid).subscribe({
       next: (message: any)=>console.log(message),
       error:(error:any)=>console.log(error),
@@ -52,17 +64,16 @@ export class NewGameComponent implements OnInit, OnDestroy {
     this.router.navigate(['game/list']);
     const gamers = this.frmJugadores.getRawValue();
     gamers.jugadores.push(this.currentUser?.uid);
-    console.log("Submit", gamers);
-    this.jugadores$.game(gamers).subscribe({
-      next: (data: Game) => {
-        // informacion que llega desde el back
-        console.log("Game", data);
-      },
-      error: (err: any) => console.log(err),
-      complete: ()=> {
-        console.log("Completado")
-      }
-    });
+    console.log("Submit de jugadores", gamers);
+    let players: Usuario[] = [];
+    gamers.jugadores.map((id: string) =>{
+      this.jugadores.map(p => {
+        p.id == id ? players.push(p) : false;
+      })
+      
+    })
+    console.log(players)
+    this.enviar(players)
   }
 
   private createFormJugadores(): FormGroup {
@@ -71,16 +82,29 @@ export class NewGameComponent implements OnInit, OnDestroy {
     });
   }
 
-  public enviar(){
+  public enviar(jugadores: Usuario[]){
+    let players = {}
+    jugadores.map(p => {
+        const obj = {
+                  [p.id] : p.name
+                }
+        players = {
+          ...players,
+          ...obj
+        }
+      }
+    )
+    console.log(players)
     this.ws$.crearJuego({
       "juegoId": this.uuid,
       "jugadores": {
-          "uid:1": "pedro",
-          "uid:2": "garcia"
+          [this.currentUser!.uid] : this.currentUser!.displayName,
+          ...players,
      },
-     "jugadorPrincipalId": "uid:1" 
+     "jugadorPrincipalId": this.currentUser!.uid,
     }).subscribe(ws => {
       console.log("objeto", ws)
     })
   }
+
 }

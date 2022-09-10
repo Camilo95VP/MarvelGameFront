@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ApiService } from 'src/app/modules/shared/services/api.service';
 
 
 @Component({
@@ -8,10 +9,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./game-list.component.scss']
 })
 export class GameListComponent implements OnInit {
+  juegos: any = [] 
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private api$: ApiService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.api$.getMisJuegos().subscribe({
+      next: (data) => {
+        this.juegos = data
+      }
+    })
   }
 
   botonClickDashboard() {

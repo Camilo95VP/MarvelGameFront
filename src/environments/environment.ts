@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  urlBackend: 'http://localhost:8080/',
+  urlBackend: 'http://localhost:8080',
+  urlWs: 'ws://localhost:8081/retrieve',
   firebaseConfig:{
     apiKey: "AIzaSyCAT4VY91evjK562KkML3erMvc863C5nz4",
     authDomain: "fir-auth-19613.firebaseapp.com",

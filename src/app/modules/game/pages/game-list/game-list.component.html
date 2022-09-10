@@ -2,21 +2,18 @@
 <div class="contenedor">
   <h2>Lista de juegos</h2>
   <div class="cont-titles">
-    <h4>Juego</h4>
+    <h4>Juegos</h4>
     <h4>Cantidad jugadores</h4>
   </div>
-  <div class="contenedor-juegos">
+  <div  *ngFor="let juego of juegos; let i = index" class="contenedor-juegos">
     <div class="cont-juego">
-      <h5>juego1</h5>
-      <button class="btn">INICIAR</button><p>14</p>
+      <h5>juego {{i + 1}}</h5>
+      <button (click)="botonClickDashboard()" class="btn">INICIAR</button><p> {{juego.cantidadJugadores}} </p>
     </div>
-    <div class="cont-juego">
-      <h5>juego2</h5>
-      <button class="btn">INICIAR</button><p>2</p>
-    </div>
-    <div class="cont-juego">
+    <br>
+    <!-- <div class="cont-juego">
       <h5>juego3</h5>
       <button (click)="botonClickDashboard()" class="btnIn">ENTRAR</button><p>3</p>
-    </div>
+    </div> -->
   </div>
 </div>
