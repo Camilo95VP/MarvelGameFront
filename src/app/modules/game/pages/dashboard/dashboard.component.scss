@@ -8,22 +8,41 @@
     width: 150px
 }
 
+.img-card {
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    position: relative;
+    bottom: 5px
+}
+
+p {
+    font-weight: bold;
+}
+
+.tiempo {
+    color: rgb(168, 0, 0)
+}
+
 .cont-estado {
     display: flex;
     gap: 1em;
 }
-.cont-stick{
+
+.cont-stick {
     width: 58.5%;
     position: relative;
-    left:40px;
+    left: 40px;
     display: flex;
     justify-content: space-between;
 }
-.cont-stick img{
+
+.cont-stick img {
     position: relative;
     top: 10px;
     opacity: 0.8;
 }
+
 .btn {
     height: 30px;
     width: 99px;
@@ -70,22 +89,22 @@
 }
 
 .dashboard-card p {
-    color: rgb(33, 197, 123);
+    color: rgba(33, 197, 123, 0.833);
     position: relative;
-    bottom: 20px
+    bottom: 20px;
 }
 
 .dashboard-mazo p {
-    color: rgb(33, 197, 123);
+    color: rgba(33, 197, 123, 0.833);
     position: relative;
-    bottom: 20px
+    bottom: 20px;
 }
 
 @media only screen and (max-width: 600px) {
     .dashboard {
         display: grid;
         left: 20px;
-    position: relative;
+        position: relative;
     }
 
     .dashboard-card {
@@ -95,8 +114,9 @@
     .dashboard-mazo {
         width: 80%
     }
-    .cont-stick{
-        display:none;
+
+    .cont-stick {
+        display: none;
     }
 }
 
@@ -132,13 +152,37 @@
 }
 
 .card-mazo {
-    background-image: url(../../../../../assets/0E0.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
     height: 180px;
     width: 100%;
     margin: 0 auto;
     border-radius: 10px
+}
+.card-mazo p{
+    position: relative;
+    bottom: 15px;
+    text-align: center;
+    left:20px;
+    color:rgb(255, 234, 0)
+}
+.power{
+    color:yellow
+}
+
+.poder {
+    -webkit-box-shadow: 0px 1px 4px 2px #2583ffe6;
+    box-shadow: 0px 1px 4px 2px #2583ffe6;
+    background-color: #00275be6;
+    position: relative;
+    bottom: 30px;
+    -webkit-border-bottom-right-radius: 10px;
+    -webkit-border-bottom-left-radius: 10px;
+    -moz-border-radius-bottomright: 10px;
+    -moz-border-radius-bottomleft: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    height:20px;
+    text-align: center;
+    display: flex;
 }
 
 .btn-poner {

@@ -5,7 +5,7 @@
     <p>Jugadores [{{jugadoresRonda}}/{{jugadoresTablero}}]</p>
   </div>
   <div class="cont-estado">
-    <p>Tiempo: {{tiempo}}s</p>  
+    <p class="tiempo">Tiempo:</p><p>{{tiempo}}s</p>  
     <button  (click)="iniciarRonda()" class="btn">INICIAR</button>
   </div>
   <div class="cont-stick">
@@ -41,7 +41,8 @@
     <div class="cards-mazo">
       <div *ngFor="let card of cartasDelJugador" class="card-mazo">
         <button class="btn-poner">PONER</button>
-        <h2>Poder {{card.poder}}</h2>
+        <img class="img-card" alt="img" src= {{card.url}} />
+        <div class="poder"><p>Poder:</p><p class="power">{{card.poder}}</p></div>
       </div>
     </div>
   </div>

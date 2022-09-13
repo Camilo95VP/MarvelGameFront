@@ -62,6 +62,7 @@ export class DashboardComponent implements OnInit {
               poder: event.carta.poder,
               estaOculta: event.carta.estaOculta,
               estaHabilitada: event.carta.estaHabilitada,
+              url: event.carta.url,
             });
           }
           if (event.type === 'cardgame.cartaquitadadelmazo') {

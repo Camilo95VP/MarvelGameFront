@@ -8,4 +8,5 @@ export interface Carta {
     poder: number,
     estaOculta:boolean,
     estaHabilitada:boolean,
+    url: string;
 }
