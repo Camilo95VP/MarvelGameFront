@@ -1,12 +1,15 @@
 <app-nav></app-nav>
 <div class="container">
   <div class="cont-info">
-    <p>Ronda #1</p>
-    <p>Jugadores 1/5</p>
+    <p>Ronda #{{numeroRonda}}</p>
+    <p>Jugadores [{{jugadoresRonda}}/{{jugadoresTablero}}]</p>
   </div>
   <div class="cont-estado">
-    <p>Tiempo: 50s</p>
-    <button class="btn">Iniciar</button>
+    <p>Tiempo: {{tiempo}}s</p>  
+    <button  (click)="iniciarRonda()" class="btn">INICIAR</button>
+  </div>
+  <div class="cont-stick">
+      <img alt="cap" src="../../../../../assets/capitan-removebg-preview.png" width="100px" height="60px">
   </div>
 </div>
 <div class="dashboard">

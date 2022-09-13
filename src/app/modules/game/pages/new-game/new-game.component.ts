@@ -5,7 +5,6 @@ import { JugadoresService } from '../../services/jugadores.service';
 import { Router } from '@angular/router';
 import { Usuario } from '../../models/usuario.model';
 import firebase from 'firebase/compat';
-import { Game } from '../../models/game.model';
 import { WebsocketService } from "src/app/modules/shared/services/websocket.service";
 import { v4 as uuidv4 } from 'uuid';
 import { ApiService } from 'src/app/modules/shared/services/api.service';
@@ -94,7 +93,6 @@ export class NewGameComponent implements OnInit, OnDestroy {
         }
       }
     )
-    console.log(players)
     this.ws$.crearJuego({
       "juegoId": this.uuid,
       "jugadores": {

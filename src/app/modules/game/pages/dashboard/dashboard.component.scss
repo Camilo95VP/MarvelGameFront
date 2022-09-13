@@ -12,10 +12,21 @@
     display: flex;
     gap: 1em;
 }
-
+.cont-stick{
+    width: 58.5%;
+    position: relative;
+    left:40px;
+    display: flex;
+    justify-content: space-between;
+}
+.cont-stick img{
+    position: relative;
+    top: 10px;
+    opacity: 0.8;
+}
 .btn {
     height: 30px;
-    width: 80px;
+    width: 99px;
     position: relative;
     top: 27px;
     color: white;
@@ -59,13 +70,13 @@
 }
 
 .dashboard-card p {
-    color: greenyellow;
+    color: rgb(33, 197, 123);
     position: relative;
     bottom: 20px
 }
 
 .dashboard-mazo p {
-    color: greenyellow;
+    color: rgb(33, 197, 123);
     position: relative;
     bottom: 20px
 }
@@ -83,6 +94,9 @@
 
     .dashboard-mazo {
         width: 80%
+    }
+    .cont-stick{
+        display:none;
     }
 }
 
@@ -154,7 +168,7 @@
     width: 0;
     border-radius: 5px;
     background: rgb(0, 172, 238);
-    background: linear-gradient(0deg, rgba(0, 172, 238, 1) 0%, rgba(2, 126, 251, 1) 100%);
+    background: linear-gradient(0deg, rgb(33, 197, 123) 0%, rgba(2, 126, 251, 1) 100%);
     z-index: -1;
     -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
     box-shadow: 4px 8px 19px -3px rgba(13, 52, 209, 0.759);

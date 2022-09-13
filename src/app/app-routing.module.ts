@@ -45,7 +45,7 @@ const routes: Routes = [
     data: { authGuardPipe: redirectUnauthorizedToLogin }
   },
   {
-    path: 'dashboard',
+    path: 'dashboard/:id',
     component: DashboardComponent,
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin }

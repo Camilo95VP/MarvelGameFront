@@ -35,43 +35,50 @@
     border-radius: 5px;
     font-weight: bold;
 }
-
+.cont-juego img{
+    position: relative;
+    top: 7px;
+    opacity: 0.6;
+}
+.cont-juego h5{
+    position: relative;
+}
 .btn {
     height: 25px;
     position: relative;
     top: 18px;
-    left: 42%;
     Width: 80px;
     cursor: pointer;
-    background: linear-gradient(0deg, rgba(0, 172, 238, 1) 0%, rgba(2, 126, 251, 1) 100%);
+    background: rgb(0,172,238);
+  background: linear-gradient(0deg, rgba(0,172,238,1) 0%, rgba(2,126,251,1) 100%);
     color: white;
     text-decoration: none;
     border-radius: 5px;
 }
 @media only screen and (max-width: 1150px) {
     .btn{
-        left: 20%;
+        left: -50%;
     }
 }
 .btn:hover {
     background: linear-gradient(0deg, rgb(0, 118, 164) 0%, rgba(2, 126, 251, 1) 100%);
 }
-.cont-juego .btnIn {
-    background-color: rgb(75, 75, 75) !important;
-    height: 25px;
-    position: relative;
-    top: 18px;
-    left: 42%;
-    Width: 80px;
-    cursor: pointer;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-}
 @media only screen and (max-width: 1150px) {
     .cont-juego .btnIn{
         left: 20%;
     }
+    .cont2{
+        gap: 0em;
+    }
+}
+.cont1{
+    display: flex;
+}
+.cont2{
+    display: flex;
+    gap: 1em;
+    position: relative;
+    right: 10px;
 }
 .cont-juego p{
     font-weight: bold;

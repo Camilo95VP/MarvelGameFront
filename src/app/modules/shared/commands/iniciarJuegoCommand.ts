@@ -1,5 +1,5 @@
 export interface IniciarJuegoCommand {
-     juegoId: string;
+     juegoId: string | null;
 }
 
 

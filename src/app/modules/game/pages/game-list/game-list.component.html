@@ -5,10 +5,16 @@
     <h4>Juegos</h4>
     <h4>Cantidad jugadores</h4>
   </div>
-  <div  *ngFor="let juego of juegos; let i = index" class="contenedor-juegos">
+  <div *ngFor="let juego of juegos; let i = index" class="contenedor-juegos">
     <div class="cont-juego">
-      <h5>juego {{i + 1}}</h5>
-      <button (click)="botonClickDashboard()" class="btn">INICIAR</button><p> {{juego.cantidadJugadores}} </p>
+      <div class="cont1">
+        <img alt="cap" src="../../../../../assets/control.png" width="75px" height="40px">
+        <h5>Juego {{i + 1}}</h5>
+      </div>
+      <div class="cont2">
+        <a><button (click)="iniciarJuego(juego.id)" class="btn">ENTRAR</button></a>
+        <p> {{juego.cantidadJugadores}} </p>
+      </div>
     </div>
     <br>
     <!-- <div class="cont-juego">
