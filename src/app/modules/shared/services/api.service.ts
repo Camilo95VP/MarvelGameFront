@@ -4,6 +4,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { CrearJuegoCommand } from '../commands/crearJuegoCommand';
+import { CrearRondaCommand } from '../commands/crearRondaCommand';
 import { IniciarJuegoCommand } from '../commands/iniciarJuegoCommand';
 import { IniciarRondaCommand } from '../commands/iniciarRondaCommand';
 import { JuegoModel } from '../models/juego.model';
@@ -41,5 +42,9 @@ export class ApiService {
   getMazo(uid: string, juegoId: string) {
     return this.http.get(environment.urlBackend + '/juego/mazo/'+uid+'/'+juegoId);
    }
+
+  crearRonda(command: CrearRondaCommand){
+    return this.http.post(environment.urlBackend + '/juego/crear/ronda', command);
+  }
 
 }

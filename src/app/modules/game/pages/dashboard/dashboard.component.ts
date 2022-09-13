@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { switchMap, tap } from 'rxjs';
 import { Carta } from 'src/app/modules/shared/models/mazo.model';
 import { ApiService } from 'src/app/modules/shared/services/api.service';
 import { AuthService } from 'src/app/modules/shared/services/auth.service';
@@ -55,12 +54,34 @@ export class DashboardComponent implements OnInit {
   })
     //CONECTAR WEBSOCKET
     this.ws$.conectar(this.juegoId).subscribe({
-      next: (event:any) => {
-        //EVENTOS
-        console.log("RESPUESTA EVENTO rondacreada = ",event)
-      },
-      error: (err:any) => console.log(err),
-      complete: () => console.log('complete')
+      
+        next: (event:any) => {
+          if (event.type === 'cardgame.ponercartaentablero') {
+            this.cartasDelTablero.push({
+              cartaId: event.carta.cartaId.uuid,
+              poder: event.carta.poder,
+              estaOculta: event.carta.estaOculta,
+              estaHabilitada: event.carta.estaHabilitada,
+            });
+          }
+          if (event.type === 'cardgame.cartaquitadadelmazo') {
+            this.cartasDelJugador = this.cartasDelJugador
+              .filter((item) => item.cartaId !==  event.carta.cartaId.uuid);
+          }
+          if (event.type === 'cardgame.tiempocambiadodeltablero') {
+            this.tiempo = event.tiempo;
+          }
+
+          if(event.type === 'cardgame.rondainiciada'){
+            this.roundStarted = true;
+          }
+
+          if(event.type === 'cargame.rondaterminada'){
+            this.roundStarted = false;
+          }
+        },
+        error: (err:any) => console.log(err),
+        complete: () => console.log('complete')
     });
   });
 }

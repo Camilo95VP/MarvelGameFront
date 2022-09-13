@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/modules/shared/services/api.service';
 import { WebsocketService } from 'src/app/modules/shared/services/websocket.service';
@@ -9,13 +9,17 @@ import { WebsocketService } from 'src/app/modules/shared/services/websocket.serv
   templateUrl: './game-list.component.html',
   styleUrls: ['./game-list.component.scss']
 })
-export class GameListComponent implements OnInit {
+export class GameListComponent implements OnInit, OnDestroy {
   juegos: any = [] 
 
   constructor(
     private router: Router, 
     private api$: ApiService,
     private ws$: WebsocketService) { }
+    
+    ngOnDestroy(): void {
+      this.ws$.close();
+    }
 
   ngOnInit(): void {
     this.api$.getJuegos().subscribe({
@@ -26,17 +30,31 @@ export class GameListComponent implements OnInit {
   }
 
   iniciarJuego(juegoId: string) {
-    this.api$.iniciarJuego({ juegoId: juegoId }).subscribe({
-      next: () => {
-        console.log('JUEGO INICIADO DESDE LA LISTA');
+    this.ws$.conectar(juegoId).subscribe({
+      next: (event:any) => {
+        if(event.type === 'cardgame.tablerocreado'){         
+          this.api$.crearRonda({
+              juegoId: juegoId,
+              tiempo: 80,
+              jugadores: event.jugadorIds.map((it:any) => it.uuid) 
+          });
+          console.log("creando tablero ...")
+        }
+
+        if(event.type == 'cardgame.rondacreada'){
+          this.router.navigate(['dashboard/'+juegoId]);
+          console.log("creando ronda ...")
+        }
+        
       },
-      complete: () => {
-        this.router.navigate([`/dashboard/${juegoId}`]);
-      },
+      error: (err:any) => console.log(err),
+      complete: () => console.log('complete desde list-games .')
     });
+    this.api$.iniciarJuego({ juegoId: juegoId }).subscribe();
+    console.log("iniciando juego ...")
+  }
   }
   // botonClickDashboard() {
   //   this.router.navigate(['dashboard']);
   // }
 
-}
