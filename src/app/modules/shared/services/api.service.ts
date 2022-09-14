@@ -7,6 +7,7 @@ import { CrearJuegoCommand } from '../commands/crearJuegoCommand';
 import { CrearRondaCommand } from '../commands/crearRondaCommand';
 import { IniciarJuegoCommand } from '../commands/iniciarJuegoCommand';
 import { IniciarRondaCommand } from '../commands/iniciarRondaCommand';
+import { PonerCartaCommand } from '../commands/ponerCartaCommand';
 import { JuegoModel } from '../models/juego.model';
 import { TableroModel } from '../models/tablero.model';
 
@@ -45,6 +46,10 @@ export class ApiService {
 
   crearRonda(command: CrearRondaCommand){
     return this.http.post(environment.urlBackend + '/juego/crear/ronda', command);
+  }
+
+  ponerCarta(command: PonerCartaCommand){
+    return this.http.post(environment.urlBackend + '/juego/poner', command);
   }
 
 }

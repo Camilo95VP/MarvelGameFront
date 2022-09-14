@@ -12,15 +12,15 @@ import { WebsocketService } from 'src/app/modules/shared/services/websocket.serv
 })
 export class DashboardComponent implements OnInit {
 
-  cartasDelJugador: Carta[] = [];
-  cartasDelTablero: Carta[] = [];
   juegoId: string = "";
   uid: string = "";
   tiempo: number = 0;
   jugadoresRonda: number = 0;
   jugadoresTablero: number = 0;
   numeroRonda: number = 0;
-  roundStarted:boolean = false;
+  roundStarted: boolean = false;
+  cartasDelJugador: Carta[] = [];
+  cartasDelTablero: Carta[] = [];
 
   constructor(
     private api$: ApiService,
@@ -35,27 +35,30 @@ export class DashboardComponent implements OnInit {
       this.juegoId = params['id'];
       console.log("ID DEL JUEGO = ", this.juegoId)
       this.uid = this.auth$.user.uid;
-      this.api$.getMazo(this.uid, this.juegoId).subscribe((element:any) => {
+      //OBTENER MAZO
+      
+      this.api$.getMazo(this.uid, this.juegoId).subscribe((element: any) => {
         this.cartasDelJugador = element.cartas;
         console.log("CARTAS JUGADOR", this.cartasDelJugador)
       });
 
-    //OBTENER TABLERO
-    this.api$.getTablero(this.juegoId).subscribe((element:any) => {
-      console.log("TABLERO = ",element)
-      this.cartasDelTablero = Object.entries(element.tablero.cartas).flatMap((a: any) => {
-        return a[1];
-    });
+      //OBTENER TABLERO
+      this.api$.getTablero(this.juegoId).subscribe((element: any) => {
+        console.log("TABLERO = ", element)
+        this.cartasDelTablero = Object.entries(element.tablero.cartas).flatMap((a: any) => {
+          return a[1];
+        });
+        console.log("CARTAS DEL TABLERO =", this.cartasDelTablero)
+        this.tiempo = element.tiempo;
+        this.jugadoresRonda = element.ronda.jugadores.length;
+        this.jugadoresTablero = element.tablero.jugadores.length;
+        this.numeroRonda = element.ronda.numero;
+      })
+      //CONECTAR WEBSOCKET
+      this.ws$.conectar(this.juegoId).subscribe({
 
-    this.tiempo = element.tiempo;
-    this.jugadoresRonda = element.ronda.jugadores.length;
-    this.jugadoresTablero = element.tablero.jugadores.length;
-    this.numeroRonda = element.ronda.numero;
-  })
-    //CONECTAR WEBSOCKET
-    this.ws$.conectar(this.juegoId).subscribe({
-      
-        next: (event:any) => {
+        next: (event: any) => {
+          console.log(event)
           if (event.type === 'cardgame.ponercartaentablero') {
             this.cartasDelTablero.push({
               cartaId: event.carta.cartaId.uuid,
@@ -67,30 +70,38 @@ export class DashboardComponent implements OnInit {
           }
           if (event.type === 'cardgame.cartaquitadadelmazo') {
             this.cartasDelJugador = this.cartasDelJugador
-              .filter((item) => item.cartaId !==  event.carta.cartaId.uuid);
+              .filter((item) => item.cartaId !== event.carta.cartaId.uuid);
           }
           if (event.type === 'cardgame.tiempocambiadodeltablero') {
             this.tiempo = event.tiempo;
           }
 
-          if(event.type === 'cardgame.rondainiciada'){
+          if (event.type === 'cardgame.rondainiciada') {
             this.roundStarted = true;
           }
 
-          if(event.type === 'cargame.rondaterminada'){
+          if (event.type === 'cargame.rondaterminada') {
             this.roundStarted = false;
           }
         },
-        error: (err:any) => console.log(err),
+        error: (err: any) => console.log(err),
         complete: () => console.log('complete')
+      });
     });
-  });
-}
+  }
 
-  iniciarRonda(){
+  poner(cartaId: string) {
+    this.api$.ponerCarta({
+      cartaId: cartaId,
+      juegoId: this.juegoId,
+      jugadorId: this.uid
+    }).subscribe();
+  }
+
+  iniciarRonda() {
     this.api$.iniciarRonda({
       juegoId: this.juegoId,
     }).subscribe();
   }
-  
+
 }

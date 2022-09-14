@@ -13,6 +13,7 @@ export class WebsocketService {
 constructor(private http: HttpClient) { }
 
 public crearJuego(body: any){
+  debugger
   return this.http.post('http://localhost:8080/juego/crear/',{...body})
 }
 

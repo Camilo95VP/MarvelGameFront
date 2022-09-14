@@ -60,7 +60,7 @@ export class NewGameComponent implements OnInit, OnDestroy {
   }
 
   public submit(): void {
-    this.router.navigate(['game/list']);
+    
     const gamers = this.frmJugadores.getRawValue();
     gamers.jugadores.push(this.currentUser?.uid);
     console.log("Submit de jugadores", gamers);
@@ -101,6 +101,7 @@ export class NewGameComponent implements OnInit, OnDestroy {
      },
      "jugadorPrincipalId": this.currentUser!.uid,
     }).subscribe(ws => {
+      this.router.navigate(['game/list']);
       console.log("objeto", ws)
     })
   }

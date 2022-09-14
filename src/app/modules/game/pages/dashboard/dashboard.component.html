@@ -15,32 +15,17 @@
 <div class="dashboard">
   <div class="dashboard-card">
     <p>Partida</p>
-    <!-- <div class="cards">
-      <div class="card">
-        card1
+    <div class="cards">
+      <div *ngFor="let card of cartasDelTablero" class="card">
+        <img class="img-card" alt="img" src={{card.url}}/>
       </div>
-      <div class="card">
-        card2
-      </div>
-      <div class="card">
-        card3
-      </div>
-      <div class="card">
-        card4
-      </div>
-      <div class="card">
-        card5
-      </div>
-      <div class="card">
-        card6
-      </div>
-    </div> -->
+    </div> 
   </div>
   <div class="dashboard-mazo">
     <p>Mazo</p>
     <div class="cards-mazo">
       <div *ngFor="let card of cartasDelJugador" class="card-mazo">
-        <button class="btn-poner">PONER</button>
+        <button (click)="poner(card.cartaId)" class="btn-poner">PONER</button>
         <img class="img-card" alt="img" src= {{card.url}} />
         <div class="poder"><p>Poder:</p><p class="power">{{card.poder}}</p></div>
       </div>
