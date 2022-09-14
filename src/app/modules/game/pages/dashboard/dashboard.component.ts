@@ -21,6 +21,8 @@ export class DashboardComponent implements OnInit {
   roundStarted: boolean = false;
   cartasDelJugador: Carta[] = [];
   cartasDelTablero: Carta[] = [];
+  ganadorRonda: string = "";
+  ganadorJuego: string = "";
 
   constructor(
     private api$: ApiService,
@@ -35,8 +37,8 @@ export class DashboardComponent implements OnInit {
       this.juegoId = params['id'];
       console.log("ID DEL JUEGO = ", this.juegoId)
       this.uid = this.auth$.user.uid;
+
       //OBTENER MAZO
-      
       this.api$.getMazo(this.uid, this.juegoId).subscribe((element: any) => {
         this.cartasDelJugador = element.cartas;
         console.log("CARTAS JUGADOR", this.cartasDelJugador)
@@ -75,13 +77,20 @@ export class DashboardComponent implements OnInit {
           if (event.type === 'cardgame.tiempocambiadodeltablero') {
             this.tiempo = event.tiempo;
           }
-
+          if(event.type === 'cardgame.rondacreada'){
+            this.numeroRonda = event.ronda.numero
+          }
           if (event.type === 'cardgame.rondainiciada') {
             this.roundStarted = true;
           }
-
           if (event.type === 'cargame.rondaterminada') {
             this.roundStarted = false;
+          }
+          if(event.type === 'cardgame.cartasasignadasajugador'){
+            this.ganadorRonda = "Ganador de la ronda # " + this.numeroRonda + "=" + event.ganadorId.uuid;
+          }
+          if(event.type === 'cardgame.juegofinalizado'){
+            this.ganadorJuego = "Ganador del juego = " + event.alias
           }
         },
         error: (err: any) => console.log(err),
