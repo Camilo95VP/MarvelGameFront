@@ -130,9 +130,9 @@ p {
 
 .cards {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 1em;
-    width: 100%;
+    width: 100%; 
     position: relative;
     bottom: 22px;
     margin: 0 auto;
