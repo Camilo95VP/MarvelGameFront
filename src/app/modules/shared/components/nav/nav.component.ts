@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import firebase from 'firebase/compat';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -12,7 +13,9 @@ export class NavComponent implements OnInit {
   currentUser!: firebase.User | null;
   nombre!: string | null | undefined;
 
-  constructor(private auth$: AuthService) { }
+  constructor(
+    private auth$: AuthService,
+    private router: Router) { }
 
   async ngOnInit() {
     this.currentUser = await this.auth$.getUserAuth();

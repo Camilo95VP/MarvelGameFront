@@ -10,7 +10,8 @@ import { WebsocketService } from 'src/app/modules/shared/services/websocket.serv
   styleUrls: ['./game-list.component.scss']
 })
 export class GameListComponent implements OnInit, OnDestroy {
-  juegos: any = [] 
+  juegos: any = []
+  mensaje: string = "";
 
   constructor(
     private router: Router, 
@@ -27,6 +28,10 @@ export class GameListComponent implements OnInit, OnDestroy {
         this.juegos = data
       }
     })
+
+    if(this.juegos.isEmpty()) {
+      this.mensaje = "No existen juegos creados"
+    }
   }
 
   iniciarJuego(juegoId: string) {
@@ -42,7 +47,7 @@ export class GameListComponent implements OnInit, OnDestroy {
         }
 
         if(event.type == 'cardgame.rondacreada'){
-          this.router.navigate(['dashboard/'+juegoId]);
+          this.router.navigate(['dashboard/'+juegoId]); 
           console.log("creando ronda ...")
         }
         

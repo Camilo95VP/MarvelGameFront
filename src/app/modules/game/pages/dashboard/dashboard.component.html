@@ -13,8 +13,8 @@
 
   <div class="cont-stick">
       <img alt="cap" src="../../../../../assets/capitan-removebg-preview.png" width="100px" height="60px">
-      <p>{{ganadorRonda}}</p>
-      <p>{{ganadorJuego}}</p>
+      <p class="ganador">{{ganadorRonda}}</p>
+      <p class="perdedor">{{perdedorRonda}}</p>
   </div>
 </div>
 
@@ -24,7 +24,7 @@
     <p>Partida</p>
     <div class="cards">
       <div *ngFor="let card of cartasDelTablero" class="card">
-        <img class="img-card" alt="img" src={{card.url}}/>
+        <img class="img-card" alt="img" src="../../../../../assets/thanos-removebg-preview.png"/>
       </div>
     </div> 
   </div>

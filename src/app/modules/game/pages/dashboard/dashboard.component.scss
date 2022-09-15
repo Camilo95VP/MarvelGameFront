@@ -28,15 +28,23 @@ p {
     display: flex;
     gap: 1em;
 }
-
+.ganador{
+    color: rgba(33, 197, 123, 0.833);
+}
+.perdedor{
+    color: rgb(168, 0, 0)
+}
 .cont-stick {
-    width: 58.5%;
+    width: 25%;
     position: relative;
     left: 40px;
     display: flex;
     justify-content: space-between;
 }
-
+.cont-stick p{
+    position: relative;
+    top: 20px;
+}
 .cont-stick img {
     position: relative;
     top: 10px;

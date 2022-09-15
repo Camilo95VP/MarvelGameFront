@@ -61,7 +61,11 @@ const routes: Routes = [
     component: FooterComponent,
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin }
-  }
+  },
+  {
+    path: '**',
+    redirectTo: "/home",
+  },
 ];
 
 @NgModule({
