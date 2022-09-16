@@ -4,7 +4,7 @@ import { Carta } from 'src/app/modules/shared/models/mazo.model';
 import { ApiService } from 'src/app/modules/shared/services/api.service';
 import { AuthService } from 'src/app/modules/shared/services/auth.service';
 import { WebsocketService } from 'src/app/modules/shared/services/websocket.service';
-import swal from'sweetalert2';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-dashboard',
@@ -25,6 +25,7 @@ export class DashboardComponent implements OnInit {
   ganadorRonda: string = "";
   perdedorRonda: string = "";
   ganadorJuego: string = "";
+  jugadorSeleccionado: string = ""
 
   constructor(
     private api$: ApiService,
@@ -64,6 +65,7 @@ export class DashboardComponent implements OnInit {
 
         next: (event: any) => {
           console.log(event)
+
           if (event.type === 'cardgame.ponercartaentablero') {
             this.cartasDelTablero.push({
               cartaId: event.carta.cartaId.uuid,
@@ -73,28 +75,41 @@ export class DashboardComponent implements OnInit {
               url: event.carta.url,
             });
           }
+
           if (event.type === 'cardgame.cartaquitadadelmazo') {
             this.cartasDelJugador = this.cartasDelJugador
               .filter((item) => item.cartaId !== event.carta.cartaId.uuid);
           }
+
+          if (event.type === 'cardgame.JugadorSeleccionado') {
+            this.jugadorSeleccionado = event.jugadorSeleccionado;
+          }
+
           if (event.type === 'cardgame.tiempocambiadodeltablero') {
             this.tiempo = event.tiempo;
+            if (event.tiempo == 1 && this.numeroRonda == 3 && this.jugadorSeleccionado == this.uid) {
+              this.router.navigate(['modal']);
+            }
           }
-          if(event.type === 'cardgame.rondacreada'){
+
+          if (event.type === 'cardgame.rondacreada') {
             this.numeroRonda = event.ronda.numero;
           }
+          
           if (event.type === 'cardgame.rondainiciada') {
             this.cartasDelJugador = this.cartasDelJugador;
             this.ganadorRonda = ""
             this.perdedorRonda = ""
             this.rondaIniciada = true;
           }
+
           if (event.type === 'cardgame.rondaterminada') {
             this.cartasDelTablero = []
             this.rondaIniciada = false;
           }
-          if(event.type === 'cardgame.cartasasignadasajugador'){
-            if(event.ganadorId.uuid === this.uid){
+
+          if (event.type === 'cardgame.cartasasignadasajugador') {
+            if (event.ganadorId.uuid === this.uid) {
               event.cartasApuesta.forEach((carta: any) => {
                 this.cartasDelJugador.push({
                   cartaId: carta.cartaId.uuid,
@@ -105,18 +120,16 @@ export class DashboardComponent implements OnInit {
                 });
               });
               this.ganadorRonda = "GANASTE LA RONDA !"
-            }else{
+            } else {
               this.perdedorRonda = "PERDISTE LA RONDA"
-           }
+            }
           }
-          
-          if(event.type === 'cardgame.juegofinalizado'){
+
+          if (event.type === 'cardgame.juegofinalizado') {
             swal.fire('Ganador del juego', event.alias);
             this.router.navigate(['game/list']);
           }
 
-
-          
         },
         error: (err: any) => console.log(err),
         complete: () => console.log('complete')
@@ -124,8 +137,8 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  limpiarTablero(){
-    this.cartasDelTablero.length-=this.cartasDelTablero.length
+  limpiarTablero() {
+    this.cartasDelTablero.length -= this.cartasDelTablero.length
   }
 
   poner(cartaId: string) {

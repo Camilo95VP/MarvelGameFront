@@ -29,9 +29,9 @@ export class GameListComponent implements OnInit, OnDestroy {
       }
     })
 
-    if(this.juegos.isEmpty()) {
-      this.mensaje = "No existen juegos creados"
-    }
+    // if(this.juegos.isEmpty()) {
+    //   this.mensaje = "No existen juegos creados"
+    // }
   }
 
   iniciarJuego(juegoId: string) {
