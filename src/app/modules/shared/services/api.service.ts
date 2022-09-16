@@ -53,4 +53,8 @@ export class ApiService {
     return this.http.post(environment.urlBackend + '/juego/poner', command);
   }
 
+  finalizarRonda(body:any): Observable<any> {
+    return this.http.post(environment.urlBackend + '/juego/ronda/finalizar', body)
+  }
+
 }

@@ -25,8 +25,8 @@ export class DashboardComponent implements OnInit {
   ganadorRonda: string = "";
   perdedorRonda: string = "";
   ganadorJuego: string = "";
-  jugadorSeleccionado: string = ""
-  showModal: boolean = true;
+  jugadorSeleccionado: string = "";
+  showModal: boolean = false;
   jugadoresEnLaRonda: any[] = new Array<any>;
 
   constructor(
@@ -34,7 +34,9 @@ export class DashboardComponent implements OnInit {
     private ws$: WebsocketService,
     public auth$: AuthService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router) { 
+    }
+
 
   ngOnInit(): void {
 
