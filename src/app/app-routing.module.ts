@@ -64,12 +64,6 @@ const routes: Routes = [
     data: { authGuardPipe: redirectUnauthorizedToLogin }
   },
   {
-    path: 'modal',
-    component: ModalComponent,
-    canActivate: [AngularFireAuthGuard],
-    data: { authGuardPipe: redirectUnauthorizedToLogin }
-  },
-  {
     path: '**',
     redirectTo: "/home",
   },

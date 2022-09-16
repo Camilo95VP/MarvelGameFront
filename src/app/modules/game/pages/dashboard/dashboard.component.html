@@ -1,4 +1,27 @@
 <app-nav></app-nav>
+<!-- <app-modal *ngIf="showModal" [prop]="jugadoresEnLaRonda"></app-modal> -->
+<div class="contenedor" *ngIf="showModal">
+  <div class="contenedor2">
+    <h2>Seleccione 2 jugadores</h2>
+
+    <form id="frmJugadores">
+
+      <div class="select">
+
+        <select   multiple>
+          <option *ngFor="let IdJugador of jugadoresEnLaRonda" >
+            {{IdJugador.uuid}}
+          </option>
+        </select>
+
+      </div>
+      <div class="cont-button">
+        <button (click)="cerrar()" class="btn-3"  type="button" ><span>Confirmar</span></button>
+      </div>
+
+    </form>
+  </div>
+</div>
 <div class="container">
 
   <div class="cont-info">

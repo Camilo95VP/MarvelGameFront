@@ -37,6 +37,7 @@ export class GameListComponent implements OnInit, OnDestroy {
   iniciarJuego(juegoId: string) {
     this.ws$.conectar(juegoId).subscribe({
       next: (event:any) => {
+        console.log(event)
         if(event.type === 'cardgame.tablerocreado'){         
           this.api$.crearRonda({
               juegoId: juegoId,

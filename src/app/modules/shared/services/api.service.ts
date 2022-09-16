@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -16,7 +16,8 @@ import { TableroModel } from '../models/tablero.model';
   providedIn: 'root'
 })
 export class ApiService {
-
+  
+  @Output() mostraModal: EventEmitter<Boolean> = new EventEmitter();
 
   constructor(private http: HttpClient, public afs: AngularFirestore) { }
 

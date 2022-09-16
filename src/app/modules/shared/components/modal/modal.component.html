@@ -1,24 +1,22 @@
 <div class="contenedor">
-  <h2>Seleccione 2 jugadores</h2>
+  <div class="contenedor2">
+    <h2>Seleccione 2 jugadores</h2>
 
-  <form id="frmJugadores">
+    <form id="frmJugadores">
 
-    <div class="select">
-      
-      <select name="jugadores" multiple class="jugadores" formControlName="jugadores">
-        <option>
-          jugador1
-        </option>
-        <option>
-          jugador2
-        </option>
-      </select>
+      <div class="select">
 
-    </div>
-    <div class="cont-button">
-      <button class="btn-3" form="frmJugadores" type="submit"><span>Confirmar</span></button>
-    </div>
+        <select  *ngFor="let id of prop" name="jugadores" multiple class="jugadores" formControlName="jugadores">
+          <option>
+            {{id}}
+          </option>
+        </select>
 
-  </form>
+      </div>
+      <div class="cont-button">
+        <button (click)="cerrar()" class="btn-3" form="frmJugadores" type="button" ><span>Confirmar</span></button>
+      </div>
 
+    </form>
+  </div>
 </div>

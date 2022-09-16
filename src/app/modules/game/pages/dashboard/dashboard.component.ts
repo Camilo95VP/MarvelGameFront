@@ -26,6 +26,8 @@ export class DashboardComponent implements OnInit {
   perdedorRonda: string = "";
   ganadorJuego: string = "";
   jugadorSeleccionado: string = ""
+  showModal: boolean = true;
+  jugadoresEnLaRonda: any[] = new Array<any>;
 
   constructor(
     private api$: ApiService,
@@ -51,6 +53,7 @@ export class DashboardComponent implements OnInit {
       //OBTENER TABLERO
       this.api$.getTablero(this.juegoId).subscribe((element: any) => {
         console.log("TABLERO = ", element)
+        this.jugadoresEnLaRonda = element.ronda.jugadores;
         this.cartasDelTablero = Object.entries(element.tablero.cartas).flatMap((a: any) => {
           return a[1];
         });
@@ -88,12 +91,14 @@ export class DashboardComponent implements OnInit {
           if (event.type === 'cardgame.tiempocambiadodeltablero') {
             this.tiempo = event.tiempo;
             if (event.tiempo == 1 && this.numeroRonda == 3 && this.jugadorSeleccionado == this.uid) {
-              this.router.navigate(['modal']);
+              this.showModal = true;
             }
           }
 
           if (event.type === 'cardgame.rondacreada') {
             this.numeroRonda = event.ronda.numero;
+            this.jugadoresEnLaRonda = event.ronda.jugadores.filter((jugador: { uuid: string; }) => jugador.uuid != this.uid);
+            console.log("EVENTO RONDA",this.jugadoresEnLaRonda, event.ronda.jugadores) 
           }
           
           if (event.type === 'cardgame.rondainiciada') {
@@ -135,7 +140,10 @@ export class DashboardComponent implements OnInit {
         complete: () => console.log('complete')
       });
     });
+    this.api$.mostraModal.subscribe( event => this.showModal = event.valueOf())
   }
+
+
 
   limpiarTablero() {
     this.cartasDelTablero.length -= this.cartasDelTablero.length
@@ -153,6 +161,10 @@ export class DashboardComponent implements OnInit {
     this.api$.iniciarRonda({
       juegoId: this.juegoId,
     }).subscribe();
+  }
+
+  cerrar(){
+    this.api$.mostraModal.emit(false)
   }
 
 }
